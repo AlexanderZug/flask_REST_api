@@ -5,7 +5,7 @@ from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 
 from db import db
-from blocklist import BLOCKLIST
+from models import BlockList
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
@@ -34,7 +34,7 @@ def create_app(db_url=None):
 
     @jwt.token_in_blocklist_loader
     def check_if_token_in_blocklist(jwt_header, jwt_payload):
-        return jwt_payload["jti"] in BLOCKLIST
+        return BlockList.query.filter(BlockList.jti == jwt_payload['jti']).first()
 
     @jwt.revoked_token_loader
     def revoked_token_callback(jwt_header, jwt_payload):
