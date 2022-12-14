@@ -6,3 +6,4 @@ python-dotenv
 marshmallow~=3.19.0
 flask-jwt-extended
 passlib
+flask-migrate
