@@ -1,0 +1,6 @@
+venv
+__pycached__
+instance/data.db
+.env
+.flaskenv
+*.pyc
